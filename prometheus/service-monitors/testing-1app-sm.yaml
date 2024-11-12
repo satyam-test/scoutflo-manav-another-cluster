@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  creationTimestamp: null
+  labels:
+    somelabel: somelabelvalue
+  name: testing-1app
+  namespace: manav-monitoring
+spec:
+  endpoints:
+  - path: /metrics
+    port: "123"
+  namespaceSelector: {}
+  selector:
+    matchLabels:
+      app: testing-1app
