@@ -1,15 +1,40 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  creationTimestamp: null
+  annotations:
+    prometheus-operator-validated: "true"
+  creationTimestamp: "2024-11-13T20:13:28Z"
+  generation: 1
+  managedFields:
+  - apiVersion: monitoring.coreos.com/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        .: {}
+        f:groups:
+          .: {}
+          k:{"name":"atharva-app2"}:
+            .: {}
+            f:interval: {}
+            f:name: {}
+            f:rules: {}
+    manager: main
+    operation: Update
+    time: "2024-11-13T20:13:28Z"
   name: atharva-app2
   namespace: manav-monitoring
+  resourceVersion: "49353016"
+  uid: 36ce5f87-1d39-45dc-b330-8a857c2d01ea
 spec:
   groups:
   - interval: 30s
     name: atharva-app2
     rules:
     - alert: example-10
+      expr: job:request_latency_seconds:mean5m{job='myjob'} > 0.5
+      labels:
+        severity: warning
+    - alert: example-101
       expr: job:request_latency_seconds:mean5m{job='myjob'} > 0.5
       labels:
         severity: warning
