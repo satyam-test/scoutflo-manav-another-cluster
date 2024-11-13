@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  creationTimestamp: null
+  name: atharva-app1
+  namespace: manav-monitoring
+spec:
+  groups:
+  - interval: 30s
+    name: atharva-app1
+    rules:
+    - alert: example-1
+      expr: job:request_latency_seconds:mean5m{job='myjob'} > 0.5
+      labels:
+        severity: warning
